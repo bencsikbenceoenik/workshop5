@@ -4,7 +4,7 @@ namespace Backend.Repository
 {
     public interface IRepository<T> where T : class
     {
-        IQueryable<T> Read();
+        IQueryable<T> ReadAll();
         void Create(T item);
     }
 }

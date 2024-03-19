@@ -1,6 +1,11 @@
+using Backend.Logic;
 using Backend.Model;
+using Backend.Repository;
+using Backend.Services;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,7 +33,8 @@ namespace Backend
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddTransient<IRepository<Chat>, ChatRepository>();
+            //services.AddTransient<ChatHistory>();
+            services.AddTransient<IRepository<Chat> ,ChatRepository>();
             services.AddTransient<IChatLogic, ChatLogic>();
 
             services.AddSignalR();
@@ -50,6 +56,15 @@ namespace Backend
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Backend v1"));
             }
 
+            app.UseExceptionHandler(c => c.Run(async context =>
+            {
+                var exception = context.Features
+                    .Get<IExceptionHandlerPathFeature>()
+                    .Error;
+                var response = new { Msg = exception.Message };
+                await context.Response.WriteAsJsonAsync(response);
+            }));
+
             app.UseRouting();
 
             app.UseAuthorization();
@@ -57,6 +72,7 @@ namespace Backend
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }

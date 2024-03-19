@@ -1,24 +1,25 @@
 ﻿using Backend.Model;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Backend.Repository
 {
-    public class ChatRepository /*: Repository*/
+    public class ChatRepository : IRepository<Chat>
     {
-        protected ChatHistory ch;
-        public ChatRepository(ChatHistory ch)
+        protected List<Chat> ch;
+        public ChatRepository(List<Chat> ch)
         {
             this.ch = ch;
         }
 
         public void Create(Chat item)
         {
-            ch.chats.Add(item);
+            ch.Add(item);
         }
 
         public IQueryable<Chat> ReadAll()
         {
-            return (IQueryable<Chat>)ch.chats;
+            return ch.AsQueryable();
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Backend.Repository
         public List<Chat> chats;
         public ChatHistory(List<Chat> chats)
         {
-            this.chats = chats;
+            chats = new List<Chat>();
         }
     }
 }
