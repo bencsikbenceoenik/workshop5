@@ -13,12 +13,11 @@ namespace Backend.Logic
 
         public ChatLogic()
         {
+            
         }
 
         public void Create(Chat item)
         {
-            ch = new List<Chat>();
-            ch.Add(item);
             //repo.Create(item);
         }
 
