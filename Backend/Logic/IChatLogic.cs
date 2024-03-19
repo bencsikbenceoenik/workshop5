@@ -1,5 +1,5 @@
 ﻿using Backend.Model;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace Backend.Logic
 {
@@ -7,6 +7,6 @@ namespace Backend.Logic
     {
         public void Create(Chat item);
 
-        public IQueryable<Chat> ReadAll();
+        public List<Chat> ReadAll();
     }
 }

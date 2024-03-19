@@ -6,7 +6,7 @@ namespace Backend.Repository
 {
     public class ChatRepository : IRepository<Chat>
     {
-        protected List<Chat> ch;
+        public List<Chat> ch;
         public ChatRepository(List<Chat> ch)
         {
             this.ch = ch;

@@ -34,7 +34,7 @@ namespace Backend
         {
 
             //services.AddTransient<ChatHistory>();
-            services.AddTransient<IRepository<Chat> ,ChatRepository>();
+            //services.AddTransient<IRepository<Chat> ,ChatRepository>();
             services.AddTransient<IChatLogic, ChatLogic>();
 
             services.AddSignalR();

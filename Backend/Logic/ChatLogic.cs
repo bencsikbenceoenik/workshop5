@@ -1,26 +1,30 @@
 ﻿using Backend.Model;
 using Backend.Repository;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Backend.Logic
 {
     public class ChatLogic : IChatLogic
     {
-        ChatRepository repo;
+        //collection
+        List<Chat> ch;
+        //ChatRepository repo;
 
-        public ChatLogic(ChatRepository repo)
+        public ChatLogic()
         {
-            this.repo = repo;
         }
 
         public void Create(Chat item)
         {
-            repo.Create(item);
+            ch = new List<Chat>();
+            ch.Add(item);
+            //repo.Create(item);
         }
 
-        public IQueryable<Chat> ReadAll()
+        public List<Chat> ReadAll()
         {
-            return repo.ReadAll();
+            return ch;
         }
     }
 }
