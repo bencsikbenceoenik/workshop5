@@ -7,24 +7,34 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Window.DataContext>
-        <local:MainWindowViewModel />
+        <local:MainWindowViewModel/>
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="5*" />
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
-        <ItemsControl x:Name="IC" ItemsSource="{Binding Chats}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <Label Content="{Binding Name}" />
-                        <Label Content="{Binding Date}" />
-                        <Label Content="{Binding message}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <ScrollViewer   x:Name="scroller" Grid.Row="0" VerticalScrollBarVisibility="Auto">
+            <ItemsControl x:Name="IC" ItemsSource="{Binding Chats}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Label Content="{Binding Name}" />
+                            <Label Content="{Binding Date}" />
+                            <Label Content="{Binding message}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Label Content="Your name:" Grid.Column="1" />
+            <TextBox Text="{Binding InputNev}" Grid.Column="1" />
+        </Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*" />
